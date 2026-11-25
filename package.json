@@ -1,0 +1,52 @@
+{
+  "name": "kite-discovery-check",
+  "version": "0.1.0",
+  "description": "Merchant-side discovery acceptance and regression testing for Kite Passport.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "bin": {
+    "kite-discovery-check": "dist/cli.js"
+  },
+  "files": [
+    "dist/cli.js",
+    "dist/capture.js",
+    "dist/evaluate.js",
+    "dist/model.js",
+    "examples/README.md",
+    "examples/agent402.json",
+    "examples/oblique.json",
+    "examples/recordings/agent402.json",
+    "examples/recordings/oblique.json",
+    "docs/architecture.md",
+    "docs/cli-reference.md",
+    "docs/roadmap.md",
+    "docs/testing.md",
+    "README.zh-CN.md",
+    "CONTRIBUTING.md",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "format:check": "prettier --check .",
+    "format": "prettier --write .",
+    "pretest": "npm run build",
+    "test": "node --test test/*.test.mjs",
+    "smoke": "node scripts/smoke.mjs",
+    "prepack": "npm run build"
+  },
+  "dependencies": {
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "22.15.30",
+    "prettier": "3.6.2",
+    "typescript": "5.9.3"
+  },
+  "bundleDependencies": [
+    "zod"
+  ]
+}

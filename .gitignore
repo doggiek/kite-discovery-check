@@ -1,0 +1,9 @@
+node_modules/
+dist/
+local-recordings/
+*.tgz
+.env
+.DS_Store
+.env.*
+!.env.example
+.kite-record-*/

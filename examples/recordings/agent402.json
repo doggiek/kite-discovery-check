@@ -1,0 +1,372 @@
+{
+  "format": 1,
+  "kind": "minimized-observation",
+  "at": "2026-11-25T04:29:46.475Z",
+  "config": {
+    "schemaVersion": 1,
+    "ksearchVersion": "6.13.9",
+    "topK": 10,
+    "origin": "https://agent402.tools",
+    "operations": [
+      {
+        "id": "market-pulse",
+        "method": "GET",
+        "path": "/api/x402-market-pulse",
+        "primary": [
+          [
+            "agent402.tools",
+            "market",
+            "pulse"
+          ]
+        ],
+        "controls": [
+          [
+            "agent402.tools"
+          ]
+        ]
+      },
+      {
+        "id": "demand-radar",
+        "method": "GET",
+        "path": "/api/demand-radar",
+        "primary": [
+          [
+            "agent402.tools",
+            "demand",
+            "radar"
+          ]
+        ],
+        "controls": [
+          [
+            "agent402.tools"
+          ]
+        ]
+      }
+    ]
+  },
+  "commands": [
+    {
+      "argv": [
+        "--version"
+      ],
+      "at": "2026-11-25T04:29:46.476Z",
+      "exitCode": 0,
+      "output": "ksearch 6.13.9"
+    },
+    {
+      "argv": [
+        "service",
+        "search",
+        "agent402.tools",
+        "market",
+        "pulse",
+        "--top",
+        "10",
+        "--output",
+        "json"
+      ],
+      "at": "2026-11-25T04:29:46.503Z",
+      "exitCode": 0,
+      "output": {
+        "query": {
+          "words": [
+            "agent402.tools",
+            "market",
+            "pulse"
+          ],
+          "top": 10,
+          "dropped": []
+        },
+        "shown": 10,
+        "matched": 485,
+        "lines": [
+          {
+            "id": "78ccfb2b46757454987ab22b",
+            "rank": 1,
+            "host": "agent402.tools",
+            "method": "GET",
+            "path": "/api/x402-market-pulse"
+          },
+          {
+            "id": "f0162ba8958e6012c909d7ad",
+            "rank": 2,
+            "host": "api.oblique.markets",
+            "method": "GET",
+            "path": "/api/v1/paid/bazaar-pulse"
+          },
+          {
+            "id": "ee3a7d64b79d3d5bc5dddc05",
+            "rank": 3,
+            "host": "api.oblique.markets",
+            "method": "POST",
+            "path": "/api/v1/paid/solana-ops-context"
+          },
+          {
+            "id": "2be52294863bd756467dfa14",
+            "rank": 4,
+            "host": "vibesprings.net",
+            "method": "GET",
+            "path": "/api/market-pulse"
+          },
+          {
+            "id": "21cd066423bbd71304b4e1e7",
+            "rank": 5,
+            "host": "agent402.tools",
+            "method": "GET",
+            "path": "/api/crypto-price"
+          },
+          {
+            "id": "637b314610a57f21c8fa4dc1",
+            "rank": 6,
+            "host": "agent402.tools",
+            "method": "GET",
+            "path": "/api/crypto-trending"
+          },
+          {
+            "id": "3e5e08f1e459e1d77d86d6ae",
+            "rank": 7,
+            "host": "kronossignals.com",
+            "method": "GET",
+            "path": "/api/v1/market-pulse"
+          },
+          {
+            "id": "8eff87dd2e378971b84260f2",
+            "rank": 8,
+            "host": "api.oblique.markets",
+            "method": "GET",
+            "path": "/api/v1/paid/listing-triage"
+          },
+          {
+            "id": "15a2196250fe33804a6dd7c7",
+            "rank": 9,
+            "host": "agent402.tools",
+            "method": "GET",
+            "path": "/api/crypto-orderbook"
+          },
+          {
+            "id": "2f654a692d7d45e580556c7a",
+            "rank": 10,
+            "host": "x402.ottoai.services",
+            "method": "GET",
+            "path": "/twitter-summary"
+          }
+        ]
+      }
+    },
+    {
+      "argv": [
+        "service",
+        "search",
+        "--example",
+        "78ccfb2b46757454987ab22b",
+        "--output",
+        "json"
+      ],
+      "at": "2026-11-25T04:29:46.736Z",
+      "exitCode": 0,
+      "output": {
+        "id": "78ccfb2b46757454987ab22b",
+        "host": "agent402.tools",
+        "method": "GET",
+        "path": "/api/x402-market-pulse",
+        "url": "https://agent402.tools/api/x402-market-pulse"
+      }
+    },
+    {
+      "argv": [
+        "service",
+        "search",
+        "agent402.tools",
+        "--top",
+        "10",
+        "--output",
+        "json"
+      ],
+      "at": "2026-11-25T04:29:46.957Z",
+      "exitCode": 0,
+      "output": {
+        "query": {
+          "words": [
+            "agent402.tools"
+          ],
+          "top": 10,
+          "dropped": []
+        },
+        "shown": 10,
+        "matched": 103,
+        "lines": [
+          {
+            "id": "9be4ea5bc60ef7876b0070d8",
+            "rank": 1,
+            "host": "agent402.tools",
+            "method": "GET",
+            "path": "/api/feedback/summary"
+          },
+          {
+            "id": "f2aaa6b771e563b60b9d012b",
+            "rank": 2,
+            "host": "agent402.tools",
+            "method": "GET",
+            "path": "/api/qr"
+          },
+          {
+            "id": "c50b136726dd445e484d8245",
+            "rank": 3,
+            "host": "agent402.tools",
+            "method": "POST",
+            "path": "/api/calc"
+          },
+          {
+            "id": "ced440e84406be98b45305da",
+            "rank": 4,
+            "host": "agent402.tools",
+            "method": "POST",
+            "path": "/api/base32"
+          },
+          {
+            "id": "1bd1237625e8f67d607dbb88",
+            "rank": 5,
+            "host": "agent402.tools",
+            "method": "GET",
+            "path": "/api/uuid"
+          },
+          {
+            "id": "4f6525ec0a9ee43c0c2a704d",
+            "rank": 6,
+            "host": "agent402.tools",
+            "method": "POST",
+            "path": "/api/hex"
+          },
+          {
+            "id": "3653b2131bc4c6ca2dc234d4",
+            "rank": 7,
+            "host": "agent402.tools",
+            "method": "GET",
+            "path": "/api/lorem"
+          },
+          {
+            "id": "01a035fa21bc7779018aab49",
+            "rank": 8,
+            "host": "agent402.tools",
+            "method": "POST",
+            "path": "/api/count"
+          },
+          {
+            "id": "2238a83144faa102e44db3ec",
+            "rank": 9,
+            "host": "agent402.tools",
+            "method": "POST",
+            "path": "/api/decide/execute"
+          },
+          {
+            "id": "5f633b66c384349143bf56a4",
+            "rank": 10,
+            "host": "agent402.tools",
+            "method": "POST",
+            "path": "/api/base58"
+          }
+        ]
+      }
+    },
+    {
+      "argv": [
+        "service",
+        "search",
+        "agent402.tools",
+        "demand",
+        "radar",
+        "--top",
+        "10",
+        "--output",
+        "json"
+      ],
+      "at": "2026-11-25T04:29:47.168Z",
+      "exitCode": 0,
+      "output": {
+        "query": {
+          "words": [
+            "agent402.tools",
+            "demand",
+            "radar"
+          ],
+          "top": 10,
+          "dropped": []
+        },
+        "shown": 10,
+        "matched": 130,
+        "lines": [
+          {
+            "id": "e02f09268734c505041d9583",
+            "rank": 1,
+            "host": "agent402.tools",
+            "method": "POST",
+            "path": "/api/forecast-ses"
+          },
+          {
+            "id": "78e32bdacef98c4e43fdcc67",
+            "rank": 2,
+            "host": "sat.ipintel.ai",
+            "method": "POST",
+            "path": "/satellite-observe"
+          },
+          {
+            "id": "972f2d75813055d91c7bf36f",
+            "rank": 3,
+            "host": "srv1334799.hstgr.cloud",
+            "method": "GET",
+            "path": "/v1/x402/demand/snapshot"
+          },
+          {
+            "id": "05323a701169e1ff8737539d",
+            "rank": 4,
+            "host": "vaaya.ai",
+            "method": "POST",
+            "path": "/api/run/google-trends/fetch"
+          },
+          {
+            "id": "792cc4f480c8ba6eed7fdf38",
+            "rank": 5,
+            "host": "gridpulse.theaslangroupllc.com",
+            "method": "GET",
+            "path": "/api/energy/forecast"
+          },
+          {
+            "id": "9be4ea5bc60ef7876b0070d8",
+            "rank": 6,
+            "host": "agent402.tools",
+            "method": "GET",
+            "path": "/api/feedback/summary"
+          },
+          {
+            "id": "e50c3934e2bfbfbfed69eba0",
+            "rank": 7,
+            "host": "api.hergertsynthora.com",
+            "method": "POST",
+            "path": "/v1/stablecoin-depeg"
+          },
+          {
+            "id": "45a65216e18df9e6d8573e32",
+            "rank": 8,
+            "host": "gridpulse.theaslangroupllc.com",
+            "method": "GET",
+            "path": "/api/energy/grid"
+          },
+          {
+            "id": "785031da2da383a0685ff154",
+            "rank": 9,
+            "host": "vaaya.ai",
+            "method": "POST",
+            "path": "/api/run/akta/website-traffic"
+          },
+          {
+            "id": "a900b787080a93bf5bfa1532",
+            "rank": 10,
+            "host": "api.oblique.markets",
+            "method": "GET",
+            "path": "/api/v1/paid/bazaar-market-report"
+          }
+        ]
+      }
+    }
+  ]
+}

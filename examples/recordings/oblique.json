@@ -1,0 +1,470 @@
+{
+  "format": 1,
+  "kind": "minimized-observation",
+  "at": "2026-11-25T12:06:53+08:00",
+  "config": {
+    "schemaVersion": 1,
+    "ksearchVersion": "6.13.9",
+    "topK": 10,
+    "origin": "https://api.oblique.markets",
+    "operations": [
+      {
+        "id": "market-report",
+        "method": "GET",
+        "path": "/api/v1/paid/bazaar-market-report",
+        "primary": [
+          [
+            "market",
+            "price",
+            "percentiles"
+          ]
+        ],
+        "controls": [
+          [
+            "api.oblique.markets"
+          ],
+          [
+            "bazaar-market-report"
+          ]
+        ]
+      },
+      {
+        "id": "category-heat",
+        "method": "GET",
+        "path": "/api/v1/paid/bazaar-category-heat",
+        "primary": [
+          [
+            "category",
+            "payment",
+            "activity"
+          ]
+        ],
+        "controls": [
+          [
+            "api.oblique.markets"
+          ],
+          [
+            "bazaar-category-heat"
+          ]
+        ]
+      }
+    ]
+  },
+  "commands": [
+    {
+      "at": "2026-11-25T12:06:53+08:00",
+      "argv": [
+        "--version"
+      ],
+      "exitCode": 0,
+      "output": "ksearch 6.13.9"
+    },
+    {
+      "at": "2026-11-25T12:06:53+08:00",
+      "argv": [
+        "service",
+        "search",
+        "api.oblique.markets",
+        "--top",
+        "10",
+        "--output",
+        "json"
+      ],
+      "exitCode": 0,
+      "output": {
+        "query": {
+          "words": [
+            "api.oblique.markets"
+          ],
+          "top": 10,
+          "dropped": []
+        },
+        "shown": 10,
+        "matched": 66,
+        "lines": [
+          {
+            "id": "5a0413413c22cf225ac00c35",
+            "rank": 1,
+            "host": "api.oblique.markets",
+            "method": "POST",
+            "path": "/api/v1/paid/rewrite"
+          },
+          {
+            "id": "51504b909ce7aa089046b367",
+            "rank": 2,
+            "host": "api.oblique.markets",
+            "method": "POST",
+            "path": "/api/v1/paid/seats-aero-search"
+          },
+          {
+            "id": "1c737351a4366a81b4366385",
+            "rank": 3,
+            "host": "api.oblique.markets",
+            "method": "POST",
+            "path": "/api/v1/paid/trading-signals"
+          },
+          {
+            "id": "07e4cc53aaa6205fafca1282",
+            "rank": 4,
+            "host": "api.oblique.markets",
+            "method": "GET",
+            "path": "/api/v1/paid/time"
+          },
+          {
+            "id": "faa26f39cf92580d45f9bc85",
+            "rank": 5,
+            "host": "api.oblique.markets",
+            "method": "GET",
+            "path": "/api/v1/paid/x402-facilitator-health"
+          },
+          {
+            "id": "c7bd967290f95754d2419daa",
+            "rank": 6,
+            "host": "api.oblique.markets",
+            "method": "POST",
+            "path": "/api/v1/paid/extract-json"
+          },
+          {
+            "id": "fc26d29d2a7e11229fcb81e9",
+            "rank": 7,
+            "host": "api.oblique.markets",
+            "method": "POST",
+            "path": "/api/v1/paid/gleif-resolve"
+          },
+          {
+            "id": "3004e75b15416c7b12eb2ffb",
+            "rank": 8,
+            "host": "api.oblique.markets",
+            "method": "POST",
+            "path": "/api/v1/paid/people-enrich"
+          },
+          {
+            "id": "ad13ba969fc17d5953fbc986",
+            "rank": 9,
+            "host": "api.oblique.markets",
+            "method": "GET",
+            "path": "/api/v1/paid/base-block-number"
+          },
+          {
+            "id": "ee3a7d64b79d3d5bc5dddc05",
+            "rank": 10,
+            "host": "api.oblique.markets",
+            "method": "POST",
+            "path": "/api/v1/paid/solana-ops-context"
+          }
+        ]
+      }
+    },
+    {
+      "at": "2026-11-25T12:06:53+08:00",
+      "argv": [
+        "service",
+        "search",
+        "bazaar-market-report",
+        "--top",
+        "10",
+        "--output",
+        "json"
+      ],
+      "exitCode": 0,
+      "output": {
+        "query": {
+          "words": [
+            "bazaar-market-report"
+          ],
+          "top": 10,
+          "dropped": []
+        },
+        "shown": 1,
+        "matched": 1,
+        "lines": [
+          {
+            "id": "a900b787080a93bf5bfa1532",
+            "rank": 1,
+            "host": "api.oblique.markets",
+            "method": "GET",
+            "path": "/api/v1/paid/bazaar-market-report"
+          }
+        ]
+      }
+    },
+    {
+      "at": "2026-11-25T12:06:53+08:00",
+      "argv": [
+        "service",
+        "search",
+        "bazaar-category-heat",
+        "--top",
+        "10",
+        "--output",
+        "json"
+      ],
+      "exitCode": 0,
+      "output": {
+        "query": {
+          "words": [
+            "bazaar-category-heat"
+          ],
+          "top": 10,
+          "dropped": []
+        },
+        "shown": 2,
+        "matched": 2,
+        "lines": [
+          {
+            "id": "6696436a674ab246ef3aa7ba",
+            "rank": 1,
+            "host": "api.oblique.markets",
+            "method": "POST",
+            "path": "/api/v1/paid/bazaar-category-heat-feed"
+          },
+          {
+            "id": "34d51f0f981334c4a2609a2e",
+            "rank": 2,
+            "host": "api.oblique.markets",
+            "method": "GET",
+            "path": "/api/v1/paid/bazaar-category-heat"
+          }
+        ]
+      }
+    },
+    {
+      "at": "2026-11-25T12:06:53+08:00",
+      "argv": [
+        "service",
+        "search",
+        "market",
+        "price",
+        "percentiles",
+        "--top",
+        "10",
+        "--output",
+        "json"
+      ],
+      "exitCode": 0,
+      "output": {
+        "query": {
+          "words": [
+            "market",
+            "price",
+            "percentiles"
+          ],
+          "top": 10,
+          "dropped": []
+        },
+        "shown": 10,
+        "matched": 684,
+        "lines": [
+          {
+            "id": "a900b787080a93bf5bfa1532",
+            "rank": 1,
+            "host": "api.oblique.markets",
+            "method": "GET",
+            "path": "/api/v1/paid/bazaar-market-report"
+          },
+          {
+            "id": "7157de3925d56cc149b7a338",
+            "rank": 2,
+            "host": "api.oblique.markets",
+            "method": "GET",
+            "path": "/api/v1/paid/bazaar-price-stats"
+          },
+          {
+            "id": "9f56ac0b8b3376b77e700ac7",
+            "rank": 3,
+            "host": "api.nansen.ai",
+            "method": "POST",
+            "path": "/api/v1/tgm/indicators"
+          },
+          {
+            "id": "6626b804bbd968e18678575b",
+            "rank": 4,
+            "host": "coil.trade",
+            "method": "GET",
+            "path": "/api/board/agent"
+          },
+          {
+            "id": "058ca168c76b43e133733132",
+            "rank": 5,
+            "host": "svm402.com",
+            "method": "GET",
+            "path": "/price/:address"
+          },
+          {
+            "id": "03bda962b19849f2cae4c5a2",
+            "rank": 6,
+            "host": "api.onesource.io",
+            "method": "GET",
+            "path": "/deepstate/v1/stats/:book"
+          },
+          {
+            "id": "5740eeddb0c183833d4c02b2",
+            "rank": 7,
+            "host": "pro-api.coingecko.com",
+            "method": "GET",
+            "path": "/api/v3/x402/onchain/simple/networks/base/token_price/:address"
+          },
+          {
+            "id": "60bfadf9a57f8fe278a6fcb6",
+            "rank": 8,
+            "host": "pro-api.coingecko.com",
+            "method": "GET",
+            "path": "/api/v3/x402/onchain/simple/networks/eth/token_price/:address"
+          },
+          {
+            "id": "83c57e52dbd1ba873e282543",
+            "rank": 9,
+            "host": "pro-api.coingecko.com",
+            "method": "GET",
+            "path": "/api/v3/x402/onchain/simple/networks/solana/token_price/:solana_address"
+          },
+          {
+            "id": "9ab5e959f887e811f8b53a08",
+            "rank": 10,
+            "host": "pro-api.coingecko.com",
+            "method": "GET",
+            "path": "/api/v3/x402/onchain/simple/networks/tron/token_price/TEkxiTehnzSmSe2XqrBj4w32RUN966rdz8"
+          }
+        ]
+      }
+    },
+    {
+      "at": "2026-11-25T12:06:54+08:00",
+      "argv": [
+        "service",
+        "search",
+        "category",
+        "payment",
+        "activity",
+        "--top",
+        "10",
+        "--output",
+        "json"
+      ],
+      "exitCode": 0,
+      "output": {
+        "query": {
+          "words": [
+            "category",
+            "payment",
+            "activity"
+          ],
+          "top": 10,
+          "dropped": []
+        },
+        "shown": 10,
+        "matched": 389,
+        "lines": [
+          {
+            "id": "82974d9cc9506c5a44b0edfa",
+            "rank": 1,
+            "host": "api.nansen.ai",
+            "method": "POST",
+            "path": "/api/v1/prediction-market/categories"
+          },
+          {
+            "id": "3833efdbe573c431a60313b3",
+            "rank": 2,
+            "host": "api.oblique.markets",
+            "method": "POST",
+            "path": "/api/v1/paid/b402-preflight"
+          },
+          {
+            "id": "947ded7a7fd1a02d9944c9ae",
+            "rank": 3,
+            "host": "rubric-protocol.com",
+            "method": "GET",
+            "path": "/v1/x402/wallet-record/:address"
+          },
+          {
+            "id": "4222f39e99ec32a5472a1c99",
+            "rank": 4,
+            "host": "api.oblique.markets",
+            "method": "POST",
+            "path": "/api/v1/paid/route-task"
+          },
+          {
+            "id": "eef66b07af84b79cf7ed37ae",
+            "rank": 5,
+            "host": "api.oblique.markets",
+            "method": "GET",
+            "path": "/api/v1/paid/wallet-spy"
+          },
+          {
+            "id": "ab8f49e3bb301b1f2597f224",
+            "rank": 6,
+            "host": "api.sirenic.eu",
+            "method": "GET",
+            "path": "/v1/prospection"
+          },
+          {
+            "id": "4c5b9c6e5b62b0673e87098b",
+            "rank": 7,
+            "host": "agent-paycheck.onrender.com",
+            "method": "POST",
+            "path": "/v1/check"
+          },
+          {
+            "id": "024084c82027470496263507",
+            "rank": 8,
+            "host": "x402.sniperx.fun",
+            "method": "GET",
+            "path": "/api/v1/token/activities/smarttraders"
+          },
+          {
+            "id": "78ccfb2b46757454987ab22b",
+            "rank": 9,
+            "host": "agent402.tools",
+            "method": "GET",
+            "path": "/api/x402-market-pulse"
+          },
+          {
+            "id": "41bf5b2b35520073eba7f2a1",
+            "rank": 10,
+            "host": "rubric-protocol.com",
+            "method": "GET",
+            "path": "/v1/x402/hedera-facts/rubric-activity"
+          }
+        ]
+      }
+    },
+    {
+      "at": "2026-11-25T12:06:54+08:00",
+      "argv": [
+        "service",
+        "search",
+        "--example",
+        "a900b787080a93bf5bfa1532",
+        "--output",
+        "json"
+      ],
+      "exitCode": 0,
+      "output": {
+        "id": "a900b787080a93bf5bfa1532",
+        "host": "api.oblique.markets",
+        "method": "GET",
+        "path": "/api/v1/paid/bazaar-market-report",
+        "url": "https://api.oblique.markets/api/v1/paid/bazaar-market-report"
+      }
+    },
+    {
+      "at": "2026-11-25T12:06:54+08:00",
+      "argv": [
+        "service",
+        "search",
+        "--example",
+        "34d51f0f981334c4a2609a2e",
+        "--output",
+        "json"
+      ],
+      "exitCode": 0,
+      "output": {
+        "id": "34d51f0f981334c4a2609a2e",
+        "host": "api.oblique.markets",
+        "method": "GET",
+        "path": "/api/v1/paid/bazaar-category-heat",
+        "url": "https://api.oblique.markets/api/v1/paid/bazaar-category-heat"
+      }
+    }
+  ]
+}

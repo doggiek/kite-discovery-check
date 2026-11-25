@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "ksearchVersion": "6.13.9",
+  "topK": 10,
+  "origin": "https://agent402.tools",
+  "operations": [
+    {
+      "id": "market-pulse",
+      "method": "GET",
+      "path": "/api/x402-market-pulse",
+      "primary": [["agent402.tools", "market", "pulse"]],
+      "controls": [["agent402.tools"]]
+    },
+    {
+      "id": "demand-radar",
+      "method": "GET",
+      "path": "/api/demand-radar",
+      "primary": [["agent402.tools", "demand", "radar"]],
+      "controls": [["agent402.tools"]]
+    }
+  ]
+}

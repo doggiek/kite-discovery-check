@@ -1,0 +1,6 @@
+node_modules
+dist
+local-recordings
+package-lock.json
+LICENSE
+examples/recordings
