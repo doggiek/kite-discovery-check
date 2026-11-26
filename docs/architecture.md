@@ -20,3 +20,7 @@ Completeness checks cover query echo, dropped words, window size, matched/shown 
 ## Compare
 
 Identity includes origin, operation IDs, method/path, ordered word arrays, primary/control groups and K. Operation declaration order does not change identity. Any incompatible setting rejects the comparison as a whole. The expected client version may differ. An exact primary rank gain/loss and entry/exit from primary visibility are directional changes. Transitions between two kinds of miss are reported as a control-visibility change. An evidence error on either side is indeterminate. Capture never updates a baseline in place.
+
+## Evaluation layer
+
+Capture, replay and offline evaluate share the per-primary evaluator. metrics.ts groups its verdicts by operation and calculates overall metrics directly over all primaries. policy.ts validates a separate versioned JSON document and evaluates inclusive thresholds. Both modules are pure. cli.ts handles file IO and exit codes; metric-report.ts formats numbers for terminal output. Compare reuses both evaluated reports for summaries and joins operation differences by ID.

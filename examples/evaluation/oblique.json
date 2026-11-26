@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "ksearchVersion": "6.13.9",
+  "topK": 10,
+  "origin": "https://api.oblique.markets",
+  "operations": [
+    {
+      "id": "market-report",
+      "method": "GET",
+      "path": "/api/v1/paid/bazaar-market-report",
+      "primary": [
+        ["market", "price", "percentiles"],
+        ["compare", "service", "prices"],
+        ["paid", "endpoint", "pricing", "distribution"]
+      ],
+      "controls": [["api.oblique.markets"], ["bazaar-market-report"]]
+    },
+    {
+      "id": "category-heat",
+      "method": "GET",
+      "path": "/api/v1/paid/bazaar-category-heat",
+      "primary": [
+        ["category", "payment", "activity"],
+        ["payments", "by", "service", "category"],
+        ["most", "active", "categories"]
+      ],
+      "controls": [["api.oblique.markets"], ["bazaar-category-heat"]]
+    }
+  ]
+}

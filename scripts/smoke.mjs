@@ -57,8 +57,19 @@ try {
       .comparable,
     true,
   );
+  const evaluation = JSON.parse(run(bin, ["evaluate", fixture, "--json"], app));
+  assert.equal(evaluation.overall.hitRateAtK, 0.5);
+  const policy =
+    "node_modules/kite-discovery-check/examples/evaluation/policy.json";
+  run(bin, ["evaluate", fixture, "--policy", policy], app, 1);
+  run(
+    bin,
+    ["evaluate", fixture.replace("oblique.json", "oblique-evaluation.json")],
+    app,
+    2,
+  );
   console.log(
-    "Packed CLI installed with an empty offline npm cache; help, replay and compare passed.",
+    "Packed CLI installed with an empty offline npm cache; help, replay, evaluate and compare passed.",
   );
 } finally {
   rmSync(dir, { recursive: true, force: true });

@@ -40,6 +40,12 @@ test("replay without network or child process", (t) => {
     "--require",
     guard,
   ]);
+  const evaluation = run(["evaluate", example, "--json"], { PATH: d }, [
+    "--require",
+    guard,
+  ]);
+  assert.equal(evaluation.status, 0, evaluation.stderr);
+  assert.equal(JSON.parse(evaluation.stdout).overall.hitRateAtK, 0.5);
   assert.equal(res.status, 1, res.stderr);
   assert.equal(JSON.parse(res.stdout).results[0].status, "DISCOVERED");
 });
@@ -117,3 +123,71 @@ for (const mode of [
     assert.equal(run(["replay", out]).status, 2);
   });
 }
+
+test("evaluate policy exit codes and additive compare with offsetting rank changes", (t) => {
+  const d = workspace(t),
+    f = join(d, "policy.json");
+  const policy = (thresholds) =>
+    writeFileSync(f, JSON.stringify({ schemaVersion: 1, thresholds }));
+  policy({ minHitRateAtK: 0.5 });
+  assert.equal(run(["evaluate", example, "--policy", f]).status, 0);
+  policy({ minOperationHitRateAtK: 0.1 });
+  assert.equal(run(["evaluate", example, "--policy", f]).status, 1);
+  policy({});
+  assert.equal(run(["evaluate", example, "--policy", f]).status, 2);
+  const read = () => JSON.parse(readFileSync(example));
+  const a = read(),
+    b = read();
+  a.kind = b.kind = "synthetic";
+  function promote(r, i, rank) {
+    const op = r.config.operations[i];
+    const detail = r.commands.find(
+      (c) => c.output?.url === r.config.origin + op.path,
+    ).output;
+    const page = r.commands.find(
+      (c) =>
+        JSON.stringify(c.argv.slice(2, -4)) === JSON.stringify(op.primary[0]),
+    ).output;
+    const row = {
+      rank,
+      id: detail.id,
+      path: detail.path,
+      host: detail.host,
+      method: detail.method,
+    };
+    page.lines = page.lines.filter((x) => x.id !== row.id);
+    page.lines.splice(rank - 1, 0, row);
+    page.lines = page.lines.slice(0, r.config.topK);
+    page.lines.forEach((x, j) => (x.rank = j + 1));
+    page.shown = page.lines.length;
+    page.matched = Math.max(page.matched, page.shown);
+  }
+  promote(b, 0, 2);
+  promote(b, 1, 1);
+  const left = join(d, "a"),
+    right = join(d, "b");
+  writeFileSync(left, JSON.stringify(a));
+  writeFileSync(right, JSON.stringify(b));
+  const cmp = (l, r) => run(["compare", l, r, "--json"]);
+  const result = cmp(left, right);
+  assert.equal(result.status, 1);
+  const diff = JSON.parse(result.stdout);
+  assert.equal(diff.metrics.delta.hitRateAtK, 0.5);
+  assert.equal(diff.metrics.delta.mrrAtK, 0.25);
+  assert.equal(diff.metrics.current.overall.hitRateAt3, 1);
+  assert.deepEqual(
+    diff.changes.map((c) => c.trend),
+    ["regressed", "improved"],
+  );
+  assert.equal(
+    JSON.parse(cmp(right, left).stdout).metrics.delta.hitRateAtK,
+    -0.5,
+  );
+  b.commands = b.commands.filter((c) => c.argv[0] !== "--version");
+  writeFileSync(right, JSON.stringify(b));
+  assert.equal(cmp(left, right).status, 2);
+  assert.equal(JSON.parse(cmp(left, right).stdout).metrics.delta, null);
+  b.config.topK = 9;
+  writeFileSync(right, JSON.stringify(b));
+  assert.equal(JSON.parse(cmp(left, right).stdout).comparable, false);
+});

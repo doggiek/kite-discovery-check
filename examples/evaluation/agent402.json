@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "ksearchVersion": "6.13.9",
+  "topK": 10,
+  "origin": "https://agent402.tools",
+  "operations": [
+    {
+      "id": "market-pulse",
+      "method": "GET",
+      "path": "/api/x402-market-pulse",
+      "primary": [
+        ["x402", "market", "activity"],
+        ["paid", "service", "market", "trends"],
+        ["market", "transaction", "volume"]
+      ],
+      "controls": [["agent402.tools"], ["agent402.tools", "market", "pulse"]]
+    },
+    {
+      "id": "demand-radar",
+      "method": "GET",
+      "path": "/api/demand-radar",
+      "primary": [
+        ["unmet", "demand", "for", "services"],
+        ["missing", "paid", "endpoints"],
+        ["buyer", "demand", "signals"]
+      ],
+      "controls": [["agent402.tools"], ["agent402.tools", "demand", "radar"]]
+    }
+  ]
+}

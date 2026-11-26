@@ -14,8 +14,12 @@ import { capture } from "./capture.js";
 import { compare, evaluate, exitCode, type Report } from "./evaluate.js";
 import { configSchema, message } from "./model.js";
 
+import { summarize } from "./metrics.js";
+import { policySchema, checkPolicy } from "./policy.js";
+import { metricLines, policyLines, deltaLine } from "./metric-report.js";
+
 const usage =
-  "kite-discovery-check capture CONFIG NEW_RECORDING [--json]\nkite-discovery-check replay RECORDING [--json]\nkite-discovery-check compare BASELINE CURRENT [--json]";
+  "kite-discovery-check capture CONFIG NEW_RECORDING [--json]\nkite-discovery-check replay RECORDING [--json]\nkite-discovery-check compare BASELINE CURRENT [--json]\nkite-discovery-check evaluate RECORDING [--policy POLICY] [--json]";
 function read(path: string, limit: number) {
   const fd = openSync(path, "r");
   try {
@@ -95,6 +99,32 @@ try {
   const [verb, first, second] = args;
   if (verb === "--help" && args.length === 1) {
     console.log(usage);
+  } else if (
+    verb === "evaluate" &&
+    first &&
+    (args.length === 2 ||
+      (args.length === 4 && second === "--policy" && args[3]))
+  ) {
+    const report = evaluate(read(first, 32 * 1024 * 1024));
+    const summary = summarize(report);
+    const policy = args[3]
+      ? checkPolicy(summary, policySchema.parse(read(args[3], 65536)))
+      : null;
+    const output = { ...report, ...summary, policy };
+    console.log(
+      json
+        ? JSON.stringify(output)
+        : [
+            textReport(report),
+            ...metricLines(summary),
+            ...policyLines(policy),
+          ].join("\n"),
+    );
+    process.exitCode = summary.overall.provisional
+      ? 2
+      : policy?.verdict === "fail"
+        ? 1
+        : 0;
   } else if (verb === "compare" && first && second && args.length === 3) {
     const diff = compare(
       read(first, 32 * 1024 * 1024),
@@ -106,6 +136,12 @@ try {
         : [
             diff.reason,
             JSON.stringify(diff.before) + " → " + JSON.stringify(diff.after),
+            "Baseline",
+            ...metricLines(diff.metrics.baseline),
+            "Current",
+            ...metricLines(diff.metrics.current),
+            deltaLine("Overall", diff.metrics.delta),
+            ...diff.metrics.operations.map((op) => deltaLine(op.id, op.delta)),
             ...diff.changes.map(
               (c) =>
                 c.id +

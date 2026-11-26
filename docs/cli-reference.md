@@ -34,3 +34,11 @@ Every primary result has a status, reason, expected URL/method and primary/contr
 | 2    | CHECK_ERROR, malformed input, resource or file error    | Incompatible configuration, indeterminate evidence or invalid input |
 
 An unchanged pair of missing results can pass the regression comparison while each run still fails absolute acceptance. Apply replay for an absolute gate. No tolerance band or weighted score is applied.
+
+## Offline evaluate
+
+`kite-discovery-check evaluate RECORDING [--policy POLICY] [--json]` reads a v1 recording and an optional JSON policy (up to 64 KiB). With complete primary evidence it exits 0 without a policy or when every enabled threshold passes, and 1 when a threshold fails. Incomplete evidence, invalid inputs or invalid policies exit 2. The JSON report includes the original per-query results, overall and operation metrics, and a nullable policy result. Each enabled check includes the threshold, actual, operation where applicable, and verdict. Inspect primary and control observations for error details. [Policy example](../examples/evaluation/policy.json) · [Metric definitions](design/discovery-evaluation.md)
+
+Compare adds a metrics object containing baseline and current summaries, overall deltas and operation deltas. JSON differences use current minus baseline in native units. Text renders rate and coverage differences in percentage points and MRR differences in absolute units. Incompatible configurations have no deltas. Incomplete evidence suppresses the affected delta, and any indeterminate primary continues to produce exit 2. Individual regressions continue to exit 1 on complete comparable evidence.
+
+A search reporting dropped words yields a query evidence error with the reported tokens. A shorter buyer query requires its own configuration and baseline. Original command arguments stay in the recording.

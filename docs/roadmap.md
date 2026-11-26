@@ -1,10 +1,10 @@
 # Roadmap
 
-| Phase                          | Scope and trigger                                                                                                         |
-| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------- |
-| Week 1 · Discovery Acceptance  | v0.1.0: explicit configuration, bounded capture, deterministic replay, per-primary verdicts, minimal baseline comparison. |
-| Week 2 · Discovery Evaluation  | If users need more than per-query acceptance, evaluate a small set of repeatable queries against an agreed threshold.     |
-| Week 3 · Discovery Diagnostics | If a repeated failure remains hard to interpret, add evidence-backed explanations for that failure.                       |
-| Week 4 · Developer Workflow    | Use actual CI or review feedback to improve baseline review, fixture maintenance or report handoff.                       |
+| Phase                 | Scope                                                                                                                            |
+| --------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| Discovery Acceptance  | Capture selected operations, verify exact ranked matches and replay per-query verdicts. Delivered in the initial source release. |
+| Discovery Evaluation  | Summarize a repeatable primary-query set, check merchant thresholds and compare metrics. Delivered in v0.2.0.                    |
+| Discovery Diagnostics | Investigate repeated unexplained failures using evidence from actual captures.                                                   |
+| Developer Workflow    | Use feedback from real CI and review runs to improve baseline handling and evidence handoff.                                     |
 
-Later phases are provisional. A ranking change warrants investigation before attributing a cause.
+Later phases depend on observed integration problems.

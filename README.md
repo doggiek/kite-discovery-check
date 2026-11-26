@@ -75,3 +75,12 @@ x402 Data Gateway already audits merchant routes and brand-blind intent ranking 
 The v1 recording reader supports the observed 6.13.9 output shape, static paths and ranked keyword queries. A client version does not pin the underlying catalog independently or authenticate a recording. A ranking change can reflect catalog content, the client or both. The project does not infer a ranking algorithm or guarantee better placement. [CLI and exit codes](docs/cli-reference.md) · [Testing and local installation](docs/testing.md) · [Roadmap](docs/roadmap.md)
 
 Apache-2.0 was chosen for the original implementation to provide explicit reuse and patent terms. Third-party data and dependencies retain their own rights. [License](LICENSE) · [Fixture handling](examples/README.md)
+
+## Evaluate a query set offline
+
+```sh
+node dist/cli.js evaluate examples/recordings/oblique.json --json
+node dist/cli.js evaluate examples/recordings/oblique.json --policy examples/evaluation/policy.json
+```
+
+On the historical two-query sample, replay exits 1, evaluate without thresholds exits 0 (one of two primaries discovered), and the example policy exits 1. Compare checks for regressions against another recording. The larger November 26 datasets include evidence errors and demonstrate provisional metrics. [Metric definitions](docs/design/discovery-evaluation.md) · [Observed results](docs/development-notes/week-02-discovery-evaluation.md)
