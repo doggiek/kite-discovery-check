@@ -1,6 +1,6 @@
 {
   "name": "kite-discovery-check",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Merchant-side discovery acceptance and regression testing for Kite Passport.",
   "license": "Apache-2.0",
   "type": "module",
@@ -26,7 +26,18 @@
     "docs/testing.md",
     "README.zh-CN.md",
     "CONTRIBUTING.md",
-    "CHANGELOG.md"
+    "CHANGELOG.md",
+    "dist/metrics.js",
+    "dist/policy.js",
+    "dist/metric-report.js",
+    "examples/evaluation/policy.json",
+    "examples/evaluation/agent402.json",
+    "examples/evaluation/oblique.json",
+    "examples/recordings/agent402-evaluation.json",
+    "examples/recordings/oblique-evaluation.json",
+    "docs/design/discovery-evaluation.md",
+    "docs/development-notes/week-01-discovery-acceptance.md",
+    "docs/development-notes/week-02-discovery-evaluation.md"
   ],
   "scripts": {
     "build": "tsc",

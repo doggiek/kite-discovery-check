@@ -172,12 +172,10 @@ export function readRows(c: Command | undefined, q: string[], top: number) {
   const parsed = page.safeParse(content(c));
   if (!parsed.success) throw new Error("Incompatible search JSON");
   const p = parsed.data;
-  if (
-    key(p.query.words) !== queryKey(q) ||
-    p.query.top !== top ||
-    p.query.dropped.length
-  )
-    throw new Error("Query echo differs or words were dropped");
+  if (p.query.dropped.length)
+    throw new Error("Dropped query words: " + JSON.stringify(p.query.dropped));
+  if (key(p.query.words) !== queryKey(q) || p.query.top !== top)
+    throw new Error("Query echo differs from the requested words or window");
   if (
     p.shown !== Math.min(p.matched, top) ||
     p.lines.length !== p.shown ||

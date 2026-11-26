@@ -1,3 +1,4 @@
+import { summarize, metricDelta } from "./metrics.js";
 import {
   candidate,
   content,
@@ -229,8 +230,25 @@ export function compare(before: unknown, after: unknown) {
         };
       })
     : [];
+  const baseline = summarize(older),
+    current = summarize(newer);
+  const oldOps = new Map(baseline.operations.map((op) => [op.id, op]));
+  const delta = comparable
+    ? metricDelta(baseline.overall, current.overall)
+    : null;
   return {
     comparable,
+    metrics: {
+      baseline,
+      current,
+      delta,
+      operations: comparable
+        ? current.operations.map((op) => ({
+            id: op.id,
+            delta: metricDelta(oldOps.get(op.id)!, op),
+          }))
+        : [],
+    },
     before: stamp(older),
     after: stamp(newer),
     reason: comparable

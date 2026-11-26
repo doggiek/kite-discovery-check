@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "thresholds": {
+    "minHitRateAtK": 0.75,
+    "minMRRAtK": 0.4,
+    "minOperationHitRateAtK": 0.5
+  }
+}
