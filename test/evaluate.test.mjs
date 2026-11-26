@@ -206,3 +206,20 @@ test("case variants of one ksearch query cannot serve as independent controls", 
   config.operations[0].controls = [["VENUE"]];
   assert.equal(configSchema.safeParse(config).success, false);
 });
+
+test("verify a deduplicated client echo against the original search argv", () => {
+  const r = fixture();
+  const words = ["venue", "entry", "VENUE"];
+  r.config.operations[0].primary = [words];
+  r.commands[1].argv = searchArgs(words, 2);
+  r.commands[1].output.query.words = ["venue", "entry"];
+  assert.equal(status(r), "DISCOVERED");
+  r.commands[1].output.query.words.reverse();
+  assert.equal(status(r), "CHECK_ERROR");
+});
+
+test("repeating a word cannot make a control query independent", () => {
+  const config = fixture().config;
+  config.operations[0].controls = [["venue", "VENUE"]];
+  assert.equal(configSchema.safeParse(config).success, false);
+});

@@ -1,9 +1,9 @@
 import { z } from "zod";
 
 export const key = (args: string[]) => JSON.stringify(args);
-const foldedWords = (words: string[]) =>
-  words.map((word) => word.toLowerCase());
-const queryKey = (words: string[]) => key(foldedWords(words));
+// ksearch echoes each lowercased argv token once, in first-occurrence order.
+const queryKey = (words: string[]) =>
+  key([...new Set(words.map((word) => word.toLowerCase()))]);
 const unique = (values: string[]) => new Set(values).size === values.length;
 const words = z
   .array(

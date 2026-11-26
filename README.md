@@ -62,7 +62,7 @@ node dist/cli.js capture examples/oblique.json local-recordings/oblique-run-1.js
 | Oblique Bazaar Market Report | market price percentiles    | DISCOVERED · #1              |
 | Oblique Bazaar Category Heat | category payment activity   | QUERY_MISS · name control #2 |
 
-`CHECK_ERROR` identifies missing or contradictory evidence. Each result includes the actual query, card ID for a verified hit, reason, inspected rows and references into the recording.
+`CHECK_ERROR` identifies missing or contradictory evidence. ksearch counts each word or phrase token once, ignoring case. Repeating a token cannot distinguish a control from its primary query. Each result includes the actual query, card ID for a verified hit, reason, inspected rows and references into the recording.
 
 ## Kite integration
 
