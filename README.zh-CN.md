@@ -45,6 +45,6 @@ mkdir -p local-recordings
 node dist/cli.js capture examples/agent402.json local-recordings/agent402-first.json
 ```
 
-只匹配精确 HTTPS origin、方法和静态路径，并交叉核对排名行和详情。所有指定窗口内均未发现为 NOT_OBSERVED；版本不符、命令失败或依赖的详情不完整等情况为 CHECK_ERROR。报告分别列出事实、基于公开规则的检查项及待确认事项。未命中不能推断未收录，跨版本变化也不能单独归因于客户端代码。
+只匹配精确 HTTPS origin、方法和静态路径，并交叉核对排名行和详情。所有指定窗口内均未发现为 NOT_OBSERVED；版本不符、命令失败或依赖的详情不完整等情况为 CHECK_ERROR。ksearch 对每个词或短语参数忽略大小写并去重。仅重复已有参数不能构成独立对照。报告分别列出事实、基于公开规则的检查项及待确认事项。未命中不能推断未收录，跨版本变化也不能单独归因于客户端代码。
 
 v0.1.0 实现配置、只读采集、回放和最小基线比较。改进措施由商户决定，本工具不调用商户业务或修改目录。输入格式、退出码、测试与打包步骤见[命令参考](docs/cli-reference.md)、[工程设计](docs/architecture.md)、[测试说明](docs/testing.md)和[后续方向](docs/roadmap.md)。
